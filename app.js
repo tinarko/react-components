@@ -1,30 +1,28 @@
-/* CREATE A COMPONENT
 
-In its most basic form, to create a React component you just write a function 
-(with a capitalized name by convention) that returns JSX. The JSX should represent 
-the intended HTML of the rendered component.
 
-*/
+class GroceryListItem extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-var GroceryList = () => (
-  <ul>
-  	<Kiwis />
-  	<Honeydew />
-  </ul>
-);
+  render() {
+    return (
+      <li>{this.props.groceryListItem}</li>
+    );
+  }
+}
 
-var Kiwis = () => (
-  <li>Kiwis</li>
-);
+var GroceryList = () => {
+  
+  var groceries = ['Kiwis', 'Honeydew'];
 
-var Honeydew = () => (
-  <li>Honeydew</li>
-);
-
-/* 
-To render a React component you use ReactDOM.render(componentInstance, DOMElement). 
-JSX returns a component instance when you wrap a component in an HTML tag. 
-
-*/
+  return (
+    <ul>
+      {groceries.map(grocery =>
+        <GroceryListItem groceryListItem={grocery} />
+      )}
+    </ul>
+  )
+};
 
 ReactDOM.render(<GroceryList />, document.getElementById('app'));
